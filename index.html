@@ -1,13 +1,621 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
-<title>Page Title</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KY-022 | Landing Page</title>
+  <style>
+    :root {
+      --primary: #0d6efd;
+      --primary-dark: #0b5ed7;
+      --primary-soft: #eaf3ff;
+      --secondary: #f4f9ff;
+      --deep: #11223d;
+      --text: #1e2a39;
+      --muted: #66758a;
+      --white: #ffffff;
+      --border: rgba(13, 110, 253, 0.1);
+      --shadow: 0 20px 45px rgba(13, 110, 253, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #eef7ff 0%, #ffffff 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--deep);
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary) 0%, #63a4ff 100%);
+      color: var(--white);
+      box-shadow: var(--shadow);
+      font-size: 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-btn {
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: var(--white);
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(13, 110, 253, 0.25);
+    }
+
+    .hero {
+      padding: 56px 0 40px;
+    }
+
+    .hero-wrap {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.1;
+      color: var(--deep);
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      max-width: 580px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--primary) 0%, #3d8bff 100%);
+      color: var(--white);
+      box-shadow: 0 16px 28px rgba(13, 110, 253, 0.2);
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: var(--deep);
+      border: 1px solid var(--border);
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      min-width: 120px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.6rem;
+      color: var(--deep);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .visual-card {
+      position: relative;
+      background: linear-gradient(160deg, #f5f9ff 0%, #dfeeff 100%);
+      border: 1px solid rgba(13, 110, 253, 0.08);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 26px;
+      min-height: 420px;
+      overflow: hidden;
+    }
+
+    .visual-card::before,
+    .visual-card::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(81, 150, 255, 0.12);
+    }
+
+    .visual-card::before {
+      width: 220px;
+      height: 220px;
+      right: -28px;
+      top: -40px;
+    }
+
+    .visual-card::after {
+      width: 180px;
+      height: 180px;
+      left: -30px;
+      bottom: -24px;
+    }
+
+    .card-panel {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(13, 110, 253, 0.08);
+      border-radius: 24px;
+      padding: 22px;
+      backdrop-filter: blur(4px);
+    }
+
+    .mini-title {
+      font-size: 0.8rem;
+      color: var(--primary-dark);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .project-box {
+      background: linear-gradient(135deg, var(--primary) 0%, #59a0ff 100%);
+      color: var(--white);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 18px 0;
+      box-shadow: 0 20px 30px rgba(13, 110, 253, 0.25);
+    }
+
+    .project-box h3 {
+      margin: 0 0 10px;
+      font-size: 2rem;
+    }
+
+    .project-box p {
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .feature-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 12px;
+      font-weight: 600;
+      color: var(--deep);
+    }
+
+    main {
+      padding-bottom: 40px;
+    }
+
+    .section {
+      padding: 56px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 3vw, 2.7rem);
+      color: var(--deep);
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .info-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px 22px;
+      box-shadow: 0 10px 30px rgba(17, 34, 61, 0.04);
+    }
+
+    .icon-box {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #dfeeff 0%, #edf5ff 100%);
+      color: var(--primary-dark);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .info-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.35rem;
+      color: var(--deep);
+    }
+
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .detail-panel {
+      background: linear-gradient(135deg, #0d6efd 0%, #eef7ff 100%);
+      border-radius: 28px;
+      padding: 30px;
+      color: var(--deep);
+      box-shadow: var(--shadow);
+    }
+
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .detail-panel h2 {
+      margin: 0 0 18px;
+      font-size: clamp(2rem, 3vw, 2.5rem);
+      color: var(--deep);
+    }
+
+    .detail-panel p {
+      margin: 0 0 16px;
+      color: rgba(17, 34, 61, 0.8);
+    }
+
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      width: 24px;
+      height: 24px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--primary-dark);
+      font-weight: 800;
+    }
+
+    .summary-box {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(13, 110, 253, 0.08);
+      border-radius: 22px;
+      padding: 24px;
+      backdrop-filter: blur(4px);
+    }
+
+    .summary-box .tag {
+      display: inline-block;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .summary-box h3 {
+      margin: 18px 0 10px;
+      font-size: 1.6rem;
+      color: var(--deep);
+    }
+
+    .summary-box ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .site-footer {
+      padding: 20px 0 36px;
+      background: #0e1d35;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #fff;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    @media (max-width: 860px) {
+      .hero-wrap,
+      .detail-layout,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav {
+        min-height: 70px;
+      }
+
+      .cta-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-mark">KY</div>
+        <span>KY-022</span>
+      </div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#overview">Overview</a>
+        <a href="#details">Details</a>
+        <a href="#project">Project</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#project" class="nav-btn">Explore</a>
+    </div>
+  </header>
 
-<h1>wachirawit Damchuary</h1>
-<p>KY-022</p>
+  <main>
+    <section class="hero" id="overview">
+      <div class="container hero-wrap">
+        <div>
+          <div class="eyebrow">Project Showcase</div>
+          <h1>โครงงาน KY-022</h1>
+          <p class="lead">
+            โครงงานที่ออกแบบเพื่อศึกษาและประยุกต์ใช้หลักการพื้นฐานของเซ็นเซอร์
+            เพื่อเพิ่มความเข้าใจในเทคโนโลยีและการพัฒนาอุปกรณ์อิเล็กทรอนิกส์
+            ในรูปแบบที่สามารถนำไปต่อยอดได้จริง
+          </p>
 
+          <div class="cta-row">
+            <a class="btn primary" href="#project">ดูรายละเอียด</a>
+            <a class="btn secondary" href="#details">ข้อมูลเพิ่มเติม</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>2022</strong>
+              <span>ปีที่ศึกษา</span>
+            </div>
+            <div class="stat">
+              <strong>21005</strong>
+              <span>รหัสรายวิชา</span>
+            </div>
+            <div class="stat">
+              <strong>CS</strong>
+              <span>สาขาเทคโนโลยีคอมพิวเตอร์</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-card" aria-label="Project visual summary">
+          <div class="card-panel">
+            <div class="mini-title">Student Project</div>
+            <div class="project-box">
+              <h3>KY-022</h3>
+              <p>พื้นฐานและเซ็นเซอร์</p>
+            </div>
+            <div class="feature-list">
+              <div class="feature-item">Sensor Basics</div>
+              <div class="feature-item">Prototype</div>
+              <div class="feature-item">Electronics</div>
+              <div class="feature-item">Innovation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="details">
+      <div class="container">
+        <div class="section-heading">
+          <h2>ข้อมูลสำคัญของโครงงาน</h2>
+          <p>รายละเอียดครอบคลุมด้านการศึกษาและการจัดทำผลงาน</p>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <div class="icon-box">01</div>
+            <h3>ผู้จัดทำ</h3>
+            <p>วชิรวิชญ์ ดำช่วย นักศึกษาผู้จัดทำโครงงาน KY-022 เพื่อแสดงผลการเรียนรู้ด้านเซ็นเซอร์และอุปกรณ์อิเล็กทรอนิกส์</p>
+          </article>
+
+          <article class="info-card">
+            <div class="icon-box">02</div>
+            <h3>รายวิชา</h3>
+            <p>เป็นส่วนหนึ่งของรายวิชา 21005-2022 พื้นฐานและเซ็นเซอร์ ซึ่งเน้นการเรียนรู้ทฤษฎีและการประยุกต์ใช้งานจริง</p>
+          </article>
+
+          <article class="info-card">
+            <div class="icon-box">03</div>
+            <h3>แผนก</h3>
+            <p>จัดทำภายใต้แผนกเทคโนโลยีคอมพิวเตอร์ วิทยาลัยเทคนิคตรัง โดยมุ่งเน้นการพัฒนาทักษะทางด้านเทคโนโลยี</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="project">
+      <div class="container">
+        <div class="detail-panel">
+          <div class="detail-layout">
+            <div>
+              <h2>เป้าหมายของโครงงาน</h2>
+              <p>
+                โครงงานนี้มุ่งหวังให้นักศึกษาได้เข้าใจหลักการทำงานของเซ็นเซอร์
+                พร้อมทั้งฝึกฝนการออกแบบ การทดลอง และการสรุปผลลัพธ์ที่สะท้อนความรู้เชิงปฏิบัติ
+              </p>
+              <ul class="check-list">
+                <li>ศึกษาแนวคิดพื้นฐานของเซ็นเซอร์</li>
+                <li>ประยุกต์ใช้งานร่วมกับระบบอิเล็กทรอนิกส์</li>
+                <li>พัฒนาทักษะการทำงานและการนำเสนอผลงาน</li>
+              </ul>
+            </div>
+
+            <div class="summary-box">
+              <span class="tag">Highlights</span>
+              <h3>KY-022 Overview</h3>
+              <ul>
+                <li>จัดทำโดย วชิรวิชญ์ ดำช่วย</li>
+                <li>เน้นด้านพื้นฐานและเซ็นเซอร์</li>
+                <li>สอดคล้องกับการเรียนการสอนด้านเทคโนโลยี</li>
+                <li>ภายใต้แผนกเทคโนโลยีคอมพิวเตอร์</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container footer-wrap">
+      <div class="footer-brand">KY-022 | วิทยาลัยเทคนิคตรัง</div>
+      <div class="footer-links">
+        <span>วชิรวิชญ์ ดำช่วย</span>
+        <span>พื้นฐานและเซ็นเซอร์</span>
+        <span>2022</span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
 
